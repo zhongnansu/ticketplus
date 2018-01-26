@@ -143,7 +143,7 @@ public class TicketMasterAPI {
 			}
 
 			JSONObject venue = getVenue(event);
-			if (venue != null) {
+			if (venue == null) {
 				StringBuilder sb = new StringBuilder();
 
 				if (!venue.isNull("address")) {
@@ -194,12 +194,12 @@ public class TicketMasterAPI {
 	/**
 	 * Main entry for sample TicketMaster API requests.
 	 */
-	public static void main(String[] args) {
-		TicketMasterAPI tmApi = new TicketMasterAPI();
-		// Mountain View, CA
-		// tmApi.queryAPI(37.38, -122.08);
-		// Houston, TX
-		tmApi.queryAPI(29.682684, -95.295410);
-	}
+//	public static void main(String[] args) {
+//		TicketMasterAPI tmApi = new TicketMasterAPI();
+//		// Mountain View, CA
+//		// tmApi.queryAPI(37.38, -122.08);
+//		// Houston, TX
+//		tmApi.queryAPI(29.682684, -95.295410);
+//	}
 
 }

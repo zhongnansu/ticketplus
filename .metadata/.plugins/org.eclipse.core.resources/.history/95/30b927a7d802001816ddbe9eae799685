@@ -20,7 +20,7 @@ public class TicketMasterAPI {
 	private static final String DEFAULT_TERM = ""; // no restriction
 	private static final String API_KEY = "Y4E1sNmq88gpv4gvmjyuZstKFNLiIGZw";
 
-	public List<Item> search(double lat, double lon, String term) {
+	public JSONArray search(double lat, double lon, String term) {
 		// Encode term in url since it may contain special characters
 		if (term == null) {
 			term = DEFAULT_TERM;
@@ -59,16 +59,16 @@ public class TicketMasterAPI {
 			// convert response to json obj
 			JSONObject obj = new JSONObject(response.toString());
 			if (obj.isNull("_embedded")) {
-				return new ArrayList<>();
+				return new JSONArray();
 			}
 			JSONObject embedded = obj.getJSONObject("_embedded");
 			JSONArray events = embedded.getJSONArray("events");
-			return getItemList(events);
+			return events;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return new ArrayList<>();
+		return new JSONArray();
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class TicketMasterAPI {
 			}
 
 			JSONObject venue = getVenue(event);
-			if (venue != null) {
+			if (venue == null) {
 				StringBuilder sb = new StringBuilder();
 
 				if (!venue.isNull("address")) {
@@ -179,13 +179,12 @@ public class TicketMasterAPI {
 	}
 
 	private void queryAPI(double lat, double lon) {
-		List<Item> itemList = search(lat, lon, null);
+		JSONArray events = search(lat, lon, null);
 		try {
-			for (Item item : itemList) {
-				JSONObject jsonObject = item.toJSONObject();
-				System.out.println(jsonObject);
+			for (int i = 0; i < events.length(); i++) {
+				JSONObject event = events.getJSONObject(i);
+				System.out.println(event);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
