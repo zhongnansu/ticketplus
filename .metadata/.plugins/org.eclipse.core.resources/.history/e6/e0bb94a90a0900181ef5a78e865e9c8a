@@ -15,8 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import db.DBConnection;
-import db.DBConnectionFactory;
 import entity.Item;
 import external.TicketMasterAPI;
 
