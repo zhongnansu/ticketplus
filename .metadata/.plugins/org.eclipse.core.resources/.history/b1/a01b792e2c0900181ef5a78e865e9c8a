@@ -108,7 +108,6 @@ public class MySQLConnection implements DBConnection {
 		Set<Item> favoriteItems = new HashSet<>();
 		try {
 			for (String itemId : itemIds) {
-				// select * represents all
 				String sql = "SELECT * from items WHERE item_id = ? ";
 				PreparedStatement statement = conn.prepareStatement(sql);
 				statement.setString(1, itemId);
