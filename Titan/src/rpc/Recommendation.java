@@ -2,6 +2,7 @@ package rpc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import algorithms.GeoRecommendation;
+import entity.Item;
 
 /**
  * Servlet implementation class Recommendation
@@ -32,30 +36,22 @@ public class Recommendation extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("application/json");
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		PrintWriter out = response.getWriter();
-		
-		JSONArray array = new JSONArray();
-		JSONObject one = new JSONObject();
-		JSONObject two = new JSONObject();
+		String userId = request.getParameter("user_id");
+		double lat = Double.parseDouble(request.getParameter("lat"));
+		double lon = Double.parseDouble(request.getParameter("lon"));
+		GeoRecommendation recommendation = new GeoRecommendation();
+		List<Item> items = recommendation.recommendItems(userId, lat, lon);
+
+		JSONArray result = new JSONArray();
 		try {
-			one.put("name", "abcd");
-			one.put("address", "san feancisco");
-			one.put("time", "01/01/2017");
-			two.put("name", "1234");
-			two.put("address", "san jose");
-			two.put("time", "01/02/2017");
-			array.put(one);
-			array.put(two);
-		} catch (JSONException e){
+			for (Item item : items) {
+				result.put(item.toJSONObject());
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		out.print(array);
-		out.flush();
-		out.close();
+		RpcHelper.writeJsonArray(response, result); 
+
 	}
 
 	/**

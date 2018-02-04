@@ -1,0 +1,12 @@
+package algorithm.copy;
+
+import java.util.List;
+
+import entity.Item;
+
+public class GeoRecommendation {
+	 public List<Item> recommendItems(String userId, double lat, double lon) {
+
+	  }
+
+}
