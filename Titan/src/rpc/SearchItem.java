@@ -64,7 +64,7 @@ public class SearchItem extends HttpServlet {
 		List<Item> items = connection.searchItems(lat, lon, term);
 
 		List<JSONObject> list = new ArrayList<>();
-		Set<String> favorite = connection.getFavoriteItemIds(userId);
+	 	Set<String> favorite = connection.getFavoriteItemIds(userId);
 		try {
 			for (Item item : items) {
 				// Add a thin version of item object
