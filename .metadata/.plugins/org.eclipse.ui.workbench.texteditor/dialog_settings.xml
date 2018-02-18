@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="heart" key="selection"/>
+		<item value="pu" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Pu"/>
+			<item value="purify"/>
+			<item value="jQ"/>
 			<item value="heart"/>
 			<item value="fav"/>
 			<item value="label"/>
@@ -20,8 +23,6 @@
 			<item value="search"/>
 			<item value="country"/>
 			<item value="address"/>
-			<item value="venue"/>
-			<item value="_embedded"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -30,7 +31,7 @@
 		<item value="290" key="DIALOG_WIDTH"/>
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
 		<item value="409" key="DIALOG_HEIGHT"/>
-		<item value="1144" key="DIALOG_X_ORIGIN"/>
+		<item value="990" key="DIALOG_X_ORIGIN"/>
 		<item value="314" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
